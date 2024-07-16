@@ -1,6 +1,7 @@
 #%%
 import numpy as np
 from scipy.optimize import fsolve
+from backward_euler_methods import backward_euler
 #%%
 # Backward Euler
 
@@ -59,6 +60,17 @@ y0 = np.array([0, 1, 0, .8, 0, 1.2])
 tspan = [0, 25]
 #%%
 # Solução com o backward Euler.
-t, Sol_beuler = beuler(fvinc, tspan, y0, 1000)
+t, Sol_beuler = backward_euler(fvinc, tspan, y0, 100000)
 
 #%%
+Sol_beuler
+# %%
+# Plota a solução com o backward Euler
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection = '3d')
+ax.plot(Sol_beuler[:,0], Sol_beuler[:,1], Sol_beuler[:,2])
+plt.show()
+# %%
